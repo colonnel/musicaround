@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "ua.asd.musicaround"
+        minSdkVersion 19
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('../keystore/debug.keystore')
+        }
+        release {
+            storeFile file('../keystore/release.jks')
+            keyAlias 'asd.ua'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    def Properties signingProps = new Properties()
+    def propFile = file('../keystore/signing_config.txt')
+    if (propFile.canRead()) {
+        signingProps.load(new FileInputStream(propFile))
+
+        if (signingProps != null && signingProps.containsKey('STORE_PASSWORD') && signingProps.containsKey('KEY_PASSWORD')) {
+            android.signingConfigs.release.storePassword = signingProps['STORE_PASSWORD']
+            android.signingConfigs.release.keyPassword = signingProps['KEY_PASSWORD']
+        } else {
+            android.buildTypes.release.signingConfig = null
+        }
+    } else {
+        android.buildTypes.release.signingConfig = null
+        throw new GradleException("Missing file with release signing configuration parameters!")
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+}
