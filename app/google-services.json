@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "698676438745",
+    "firebase_url": "https://musicaround-29ad3.firebaseio.com",
+    "project_id": "musicaround-29ad3",
+    "storage_bucket": "musicaround-29ad3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698676438745:android:11b1bac7d1f84719",
+        "android_client_info": {
+          "package_name": "ua.asd.musicaround"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698676438745-16ubprod7jfcnm7mii9m6efk5i9ctbmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ua.asd.musicaround",
+            "certificate_hash": "B54C1AD73034404830C7FAA6BE3E3C22F1E34C7F"
+          }
+        },
+        {
+          "client_id": "698676438745-7kj98p0fvcm0ms5449p3ig6kjcq8hfts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0MYKU5OSTWA3r-MJCZkZSeHgYJOvxH24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698676438745-7kj98p0fvcm0ms5449p3ig6kjcq8hfts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
