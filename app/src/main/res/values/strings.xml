@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MusicAround</string>
     <string name="title_activity_maps">Map</string>
+    <string name="facebook_app_id">1799756110253892</string>
+    <integer name="com_vk_sdk_AppId">5589261</integer>
 </resources>
