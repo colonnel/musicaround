@@ -1,5 +1,6 @@
 package ua.asd.musicaround.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,7 +70,9 @@ public class SplashActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-
+            Intent intent = new Intent(SplashActivity.this,MapsActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
