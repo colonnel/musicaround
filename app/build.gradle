@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "ua.asd.musicaround"
         minSdkVersion 17
-        targetSdkVersion 24
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }

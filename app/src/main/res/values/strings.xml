@@ -4,6 +4,10 @@
     <string name="facebook_app_id">1799756110253892</string>
     <integer name="com_vk_sdk_AppId">5589261</integer>
 
+    <string name="provider_gps">GPS</string>
+    <string name="provider_network">Network</string>
+    <string name="location_settings">Location settings</string>
+
     <!--MESSAGES-->
     <string name="message_no_internet">No internet connection.\nPlease, check your internet connection and try again</string>
     <string name="retry">Retry</string>
