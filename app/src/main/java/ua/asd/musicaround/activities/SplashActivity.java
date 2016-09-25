@@ -2,14 +2,13 @@ package ua.asd.musicaround.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.mikhaellopez.circularfillableloaders.CircularFillableLoaders;
 
 import ua.asd.musicaround.R;
+import ua.asd.musicaround.core.firebase.FirebaseManager;
 
 public class SplashActivity extends BaseActivity {
 
@@ -20,7 +19,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         bindViews();
-        LoadViewTask loadViewTask=new LoadViewTask();
+        LoadViewTask loadViewTask = new LoadViewTask();
         loadViewTask.execute();
     }
 
@@ -70,9 +69,20 @@ public class SplashActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            Intent intent = new Intent(SplashActivity.this,MapsActivity.class);
-            startActivity(intent);
-            finish();
+            FirebaseManager.getInstance().isUserLogin(new FirebaseManager.IsUserLoginResult() {
+                @Override
+                public void resultIsLogin(boolean result) {
+                    if (result) {
+                        Intent intent = new Intent(SplashActivity.this, MapsActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(SplashActivity.this, EmailPasswordActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            });
         }
     }
 }
