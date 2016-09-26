@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.Executor;
 
 import ua.asd.musicaround.BaseAppMusicAround;
+import ua.asd.musicaround.activities.EmailPasswordActivity;
 import ua.asd.musicaround.models.User;
 
 
@@ -54,7 +55,7 @@ public class FirebaseManager {
     }
 
     public void createUser(final String username, final String email, String password, final String phone, final String avatar) {
-        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
@@ -70,5 +71,14 @@ public class FirebaseManager {
     private void writeNewUserInDbFirebase(String userUid, String username, String email, String provider, String phone, String avatar) {
         User user = new User(userUid, username, email, provider, phone, avatar);
         mFirebaseDB.getReference("user").child(user.getUserUid()).setValue(user);
+    }
+
+    public boolean checkUser() {
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

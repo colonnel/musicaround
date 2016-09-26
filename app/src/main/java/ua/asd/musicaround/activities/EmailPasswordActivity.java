@@ -54,7 +54,6 @@ public class EmailPasswordActivity extends BaseActivity {
         String password = vEditPassword.getText().toString();
         String phone = vEditPhone.getText().toString();
         createAccount(name, email, password, phone);
-
     }
 
     private boolean validateForm() {

@@ -69,20 +69,29 @@ public class SplashActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            FirebaseManager.getInstance().isUserLogin(new FirebaseManager.IsUserLoginResult() {
-                @Override
-                public void resultIsLogin(boolean result) {
-                    if (result) {
-                        Intent intent = new Intent(SplashActivity.this, MapsActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(SplashActivity.this, EmailPasswordActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            });
+            if (FirebaseManager.getInstance().checkUser()) {
+                Intent intent = new Intent(SplashActivity.this, MapsActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(SplashActivity.this, EmailPasswordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+//            FirebaseManager.getInstance().isUserLogin(new FirebaseManager.IsUserLoginResult() {
+//                @Override
+//                public void resultIsLogin(boolean result) {
+//                    if (result) {
+//                        Intent intent = new Intent(SplashActivity.this, MapsActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(SplashActivity.this, EmailPasswordActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
+//            });
         }
     }
 }
