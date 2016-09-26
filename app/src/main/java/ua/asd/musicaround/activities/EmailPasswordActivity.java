@@ -53,7 +53,7 @@ public class EmailPasswordActivity extends BaseActivity {
         String email = vEditEmail.getText().toString();
         String password = vEditPassword.getText().toString();
         String phone = vEditPhone.getText().toString();
-//        createAccount(name, email, password, phone);
+        createAccount(name, email, password, phone);
 
     }
 
