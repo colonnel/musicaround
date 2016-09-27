@@ -40,7 +40,7 @@ public class FirebaseManager {
     }
 
     public interface IsUserLoginResult {
-        void resultIsLogin(boolean result);
+        void resultIsLogin(boolean resultLogin);
     }
 
     //-----------------Auth-----------------//

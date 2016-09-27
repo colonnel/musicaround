@@ -11,4 +11,10 @@
     <!--MESSAGES-->
     <string name="message_no_internet">No internet connection.\nPlease, check your internet connection and try again</string>
     <string name="retry">Retry</string>
+    <string name="sign_up_with_email">Sign up with Email</string>
+    <string name="sign_up_with_fb">Sign up with FB</string>
+    <string name="sign_up_with_vk">Sign up with VK</string>
+    <string name="already_registered">Already registered?</string>
+    <string name="log_in">Log in</string>
+    <string name="get_started">Get Started</string>
 </resources>
