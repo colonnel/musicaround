@@ -58,30 +58,36 @@ public class EmailPasswordActivity extends BaseActivity {
 
     private boolean validateForm() {
         boolean valid = true;
+        Toast toast = Toast.makeText(EmailPasswordActivity.this, "Required", Toast.LENGTH_SHORT);
         String name = vEditName.getText().toString();
         if (TextUtils.isEmpty(name)) {
-            vEditName.setError("Required.");
+            vEditName.setBackgroundResource(R.drawable.edittext_error);
+            toast.show();
         } else {
             vEditName.setError(null);
         }
         String email = vEditEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            vEditEmail.setError("Required.");
+            vEditEmail.setBackgroundResource(R.drawable.edittext_error);
+            toast.show();
         } else {
             vEditEmail.setError(null);
         }
         String password = vEditPassword.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            vEditPassword.setError("Required.");
+            vEditPassword.setBackgroundResource(R.drawable.edittext_error);
+            toast.show();
         } else {
             if (password.length() < 6) {
                 Toast.makeText(EmailPasswordActivity.this, "Password must be more then 6 charsets", Toast.LENGTH_SHORT).show();
             }
-            vEditPassword.setError(null);
+            vEditPassword.setBackgroundResource(R.drawable.edittext_error);
+            toast.show();
         }
         String phone = vEditPhone.getText().toString();
         if (TextUtils.isEmpty(phone)) {
-            vEditPhone.setError("Required.");
+            vEditPhone.setBackgroundResource(R.drawable.edittext_error);
+            toast.show();
         } else {
             vEditPhone.setError(null);
         }

@@ -81,4 +81,20 @@ public class FirebaseManager {
             return false;
         }
     }
+
+    public void signOut() {
+        mFirebaseAuth.signOut();
+    }
+
+    public void signIn(String email, String password) {
+        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.v(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                if (!task.isSuccessful()) {
+                    Log.e(TAG, "signInWithEmail:failed:" + task.getException());
+                }
+            }
+        });
+    }
 }
