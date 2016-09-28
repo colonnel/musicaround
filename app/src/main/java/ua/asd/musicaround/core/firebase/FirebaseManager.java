@@ -44,16 +44,17 @@ public class FirebaseManager {
     }
 
     //-----------------Auth-----------------//
-    public void isUserLogin(final IsUserLoginResult isUserLoginResult) {
-        mFireBaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                isUserLoginResult.resultIsLogin(user != null);
-            }
-        };
-    }
+//    public void isUserLogin(final IsUserLoginResult isUserLoginResult) {
+//        mFireBaseAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                isUserLoginResult.resultIsLogin(user != null);
+//            }
+//        };
+//    }
 
+    //Create new uswr
     public void createUser(final String username, final String email, String password, final String phone, final String avatar) {
         mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -73,6 +74,7 @@ public class FirebaseManager {
         mFirebaseDB.getReference("user").child(user.getUserUid()).setValue(user);
     }
 
+    //Check is user login
     public boolean checkUser() {
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         if (user != null) {
@@ -86,6 +88,7 @@ public class FirebaseManager {
         mFirebaseAuth.signOut();
     }
 
+    //Sign in with email and password
     public void signIn(String email, String password) {
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -93,6 +96,28 @@ public class FirebaseManager {
                 Log.v(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                 if (!task.isSuccessful()) {
                     Log.e(TAG, "signInWithEmail:failed:" + task.getException());
+                }
+            }
+        });
+    }
+
+    //Get user info
+    public FirebaseUser getCurrentUserDetails() {
+        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            return currentUser;
+        } else {
+            return null;
+        }
+    }
+
+    //Send email to reset password
+    public void sendResetPasswordEmail(String email) {
+        mFirebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.v(TAG, "Email sent.");
                 }
             }
         });

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import ua.asd.musicaround.R;
 
 
-public class LoginActivity extends BaseActivity {
+public class SignUpActivity extends BaseActivity {
     private Button vSignUpFbButton;
     private Button vSignUpVkButton;
     private Button vSignUpEmailButton;
@@ -31,15 +31,22 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fb_sign_button:
-                Toast.makeText(LoginActivity.this, "Sorry! Need TODO.", Toast.LENGTH_SHORT);
+                Toast.makeText(SignUpActivity.this, "Sorry! Need TODO.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.vk_sign_button:
-                Toast.makeText(LoginActivity.this, "Sorry! Need TODO.", Toast.LENGTH_SHORT);
+                Toast.makeText(SignUpActivity.this, "Sorry! Need TODO.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.email_sign_button:
-                Intent intent = new Intent(LoginActivity.this, EmailPasswordActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, EmailPasswordActivity.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.log_in_text:
+                Intent intent1 = new Intent(SignUpActivity.this, EmailLoginActivity.class);
+                startActivity(intent1);
+                finish();
+                System.out.println();
+                break;
         }
     }
 }

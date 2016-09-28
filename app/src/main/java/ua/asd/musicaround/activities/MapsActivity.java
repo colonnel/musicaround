@@ -1,8 +1,11 @@
 package ua.asd.musicaround.activities;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ua.asd.musicaround.R;
+import ua.asd.musicaround.core.firebase.FirebaseManager;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -26,6 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient mGoogleApiClient = null;
     private LocationManager locationManager;
     private Location mCurrentLocation;
+    private Button vLogOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-
+        vLogOutButton = (Button) findViewById(R.id.logout_button);
+        vLogOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseManager.getInstance().signOut();
+                startActivity(new Intent(MapsActivity.this, SignUpActivity.class));
+                finish();
+            }
+        });
 
     }
 
@@ -53,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         isMapInit = true;
-        if (isLocationRecieved){
+        if (isLocationRecieved) {
             actionAfterInitMapAndReceiveLocation();
         }
     }
@@ -62,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng currentUserLocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
         mMap.addMarker(new MarkerOptions().position(currentUserLocation).title("Marker in currentUserLocation"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentUserLocation));
-        animateTo(currentUserLocation,14);
+        animateTo(currentUserLocation, 14);
     }
 
     protected void animateTo(LatLng coordinates, int zoomParam) {

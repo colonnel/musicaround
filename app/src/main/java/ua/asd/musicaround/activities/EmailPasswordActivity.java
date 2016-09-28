@@ -38,12 +38,7 @@ public class EmailPasswordActivity extends BaseActivity {
     }
 
     private void createAccount(String name, String email, String password, String phone) {
-        Log.d(TAG, "createAccount:" + email);
-        if (!validateForm()) {
-            return;
-        }
         FirebaseManager.getInstance().createUser(name, email, password, phone, null);
-
     }
 
 
@@ -53,11 +48,12 @@ public class EmailPasswordActivity extends BaseActivity {
         String email = vEditEmail.getText().toString();
         String password = vEditPassword.getText().toString();
         String phone = vEditPhone.getText().toString();
-        createAccount(name, email, password, phone);
+        if (validateForm()) {
+            createAccount(name, email, password, phone);
+        }
     }
 
     private boolean validateForm() {
-        boolean valid = true;
         Toast toast = Toast.makeText(EmailPasswordActivity.this, "Required", Toast.LENGTH_SHORT);
         String name = vEditName.getText().toString();
         if (TextUtils.isEmpty(name)) {
@@ -91,6 +87,6 @@ public class EmailPasswordActivity extends BaseActivity {
         } else {
             vEditPhone.setError(null);
         }
-        return valid;
+        return true;
     }
 }

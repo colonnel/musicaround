@@ -36,7 +36,7 @@
                     android:text="Email" />
 
                 <EditText
-                    android:id="@+id/edit_email"
+                    android:id="@+id/edit_email_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="name@example.com" />
@@ -65,7 +65,7 @@
                     android:text="Password" />
 
                 <EditText
-                    android:id="@+id/edit_pass"
+                    android:id="@+id/edit_pass_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="password"
@@ -77,16 +77,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/get_started_button"
+        android:id="@+id/get_started_button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_started" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/create_account_text"
@@ -94,17 +92,17 @@
             android:layout_height="wrap_content"
             android:text="Create Account"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:layout_gravity="left"/>
+            android:layout_gravity="start"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/forgot_password_text"
-            android:layout_width="145dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:text="Forgot Password"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:layout_gravity="right|end"/>
+            android:textColor="@color/colorPrimary" />
 
-    </LinearLayout>
+    </FrameLayout>
 </LinearLayout>
