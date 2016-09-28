@@ -62,8 +62,9 @@ public class EmailLoginActivity extends BaseActivity {
     }
 
     private void logInUser(String email, String password) {
+        // TODO: 28.09.2016 SB refact checking is auth success 
         FirebaseManager.getInstance().signIn(email, password);
-        if (FirebaseManager.getInstance().checkUser()) {
+        if (FirebaseManager.getInstance().getCurrentUser() != null) {
             startActivity(new Intent(EmailLoginActivity.this, MapsActivity.class));
             finish();
         } else {

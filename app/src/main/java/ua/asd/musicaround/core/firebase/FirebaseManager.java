@@ -93,16 +93,16 @@ public class FirebaseManager {
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.v(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                 if (!task.isSuccessful()) {
                     Log.e(TAG, "signInWithEmail:failed:" + task.getException());
                 }
+                Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
             }
         });
     }
 
     //Get user info
-    public FirebaseUser getCurrentUserDetails() {
+    public FirebaseUser getCurrentUser() {
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             return currentUser;

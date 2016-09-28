@@ -56,6 +56,8 @@
             android:label="ServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/VK.Transparent" />
+        <activity android:name=".activities.ResetPasswordActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

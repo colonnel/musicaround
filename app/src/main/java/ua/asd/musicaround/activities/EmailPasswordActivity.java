@@ -1,8 +1,8 @@
 package ua.asd.musicaround.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,9 +50,12 @@ public class EmailPasswordActivity extends BaseActivity {
         String phone = vEditPhone.getText().toString();
         if (validateForm()) {
             createAccount(name, email, password, phone);
+            new Intent(EmailPasswordActivity.this, MapsActivity.class);
+            finish();
         }
     }
 
+    // TODO: 28.09.2016 SB refact form validation
     private boolean validateForm() {
         Toast toast = Toast.makeText(EmailPasswordActivity.this, "Required", Toast.LENGTH_SHORT);
         String name = vEditName.getText().toString();
@@ -77,8 +80,7 @@ public class EmailPasswordActivity extends BaseActivity {
             if (password.length() < 6) {
                 Toast.makeText(EmailPasswordActivity.this, "Password must be more then 6 charsets", Toast.LENGTH_SHORT).show();
             }
-            vEditPassword.setBackgroundResource(R.drawable.edittext_error);
-            toast.show();
+            vEditEmail.setError(null);
         }
         String phone = vEditPhone.getText().toString();
         if (TextUtils.isEmpty(phone)) {

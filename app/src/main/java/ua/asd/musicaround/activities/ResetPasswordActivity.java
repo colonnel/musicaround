@@ -29,6 +29,7 @@ public class ResetPasswordActivity extends BaseActivity {
         String email = vEditEmail.getText().toString();
         if (!TextUtils.isEmpty(email)) {
             FirebaseManager.getInstance().sendResetPasswordEmail(email);
+            finish();
         }
     }
 }

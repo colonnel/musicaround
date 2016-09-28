@@ -25,6 +25,10 @@ public class SignUpActivity extends BaseActivity {
         vSignUpVkButton = (Button) findViewById(R.id.vk_sign_button);
         vSignUpEmailButton = (Button) findViewById(R.id.email_sign_button);
         vLoginText = (TextView) findViewById(R.id.log_in_text);
+        vSignUpFbButton.setOnClickListener(this);
+        vSignUpVkButton.setOnClickListener(this);
+        vSignUpEmailButton.setOnClickListener(this);
+        vLoginText.setOnClickListener(this);
     }
 
     @Override
