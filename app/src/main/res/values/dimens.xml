@@ -2,5 +2,33 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--PADDING-->
+    <dimen name="padding">10dp</dimen>
+    <dimen name="paddingMedium">15dp</dimen>
+    <dimen name="paddingVeryBig">30dp</dimen>
+    <dimen name="arrowPadding">-10dp</dimen>
+
+    <!--MARGIN-->
+    <dimen name="indicatorBottomMargin">15dp</dimen>
+    <dimen name="margin_info_text">80dp</dimen>
+    <dimen name="marginVeryVeryBig">60dp</dimen>
+    <dimen name="marginVerySmall">2dp</dimen>
+    <dimen name="marginSmall">5dp</dimen>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="marginMedium">15dp</dimen>
+    <dimen name="marginBig">20dp</dimen>
+    <dimen name="marginVeryBig">30dp</dimen>
+    <dimen name="marginVeryXBig">40dp</dimen>
+
+    <!--TEXT_SIZE-->
+    <dimen name="textSizeSmall">14sp</dimen>
+    <dimen name="textSize">16sp</dimen>
+    <dimen name="textButtonSize">20sp</dimen>
+    <dimen name="textVeryBig">30sp</dimen>
+    <dimen name="textVeryVeryBig">40sp</dimen>
+
+    <!--SPLASH_SCREEN-->
+    <dimen name="dimLogo">140dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -15,6 +15,7 @@
         <item name="strokeWidth">1dp</item>
         <item name="radius">10dp</item>
         <item name="centered">true</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
