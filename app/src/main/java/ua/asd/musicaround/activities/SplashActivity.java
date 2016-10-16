@@ -1,5 +1,6 @@
 package ua.asd.musicaround.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.mikhaellopez.circularfillableloaders.CircularFillableLoaders;
 
+import ua.asd.musicaround.PresentationScreens;
 import ua.asd.musicaround.R;
 
 public class SplashActivity extends BaseActivity {
@@ -69,7 +71,9 @@ public class SplashActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-
+            Intent intent = new Intent(SplashActivity.this, PresentationScreens.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
