@@ -22,17 +22,20 @@ import java.io.ByteArrayOutputStream;
 
 import ua.asd.musicaround.R;
 import ua.asd.musicaround.core.firebase.FirebaseManager;
+import ua.asd.musicaround.utils.ImageUtil;
+import ua.asd.musicaround.utils.UIUtils;
 
 
 public class EmailPasswordActivity extends BaseActivity {
+    private static final int REQUEST_CODE_GET_ALL_IMAGES = 22;
     private EditText vEditName;
     private EditText vEditEmail;
     private EditText vEditPassword;
     private EditText vEditPhone;
-    private FloatingActionButton vGetAvatar;
+    private FloatingActionButton vButtonGetAvatar;
     private Button vGetStartedButton;
     private FirebaseDatabase mFirebaseDB;
-    private String pathToAvatar;
+    private String userAvatar;
 
 
     private static final String TAG = "EmailPassword";
@@ -46,12 +49,13 @@ public class EmailPasswordActivity extends BaseActivity {
         vEditPassword = (EditText) findViewById(R.id.edit_pass);
         vEditPhone = (EditText) findViewById(R.id.edit_phone);
         vGetStartedButton = (Button) findViewById(R.id.get_started_button);
-        vGetAvatar = (FloatingActionButton) findViewById(R.id.avatar);
+        vButtonGetAvatar = (FloatingActionButton) findViewById(R.id.avatar);
         vGetStartedButton.setOnClickListener(this);
+        vButtonGetAvatar.setOnClickListener(this);
     }
 
     private void createAccount(String name, String email, String password, String phone) {
-        FirebaseManager.getInstance().createUser(name, email, password, phone, getAvatarBase64(pathToAvatar));
+        FirebaseManager.getInstance().createUser(name, email, password, phone, userAvatar);
     }
 
 
@@ -116,21 +120,12 @@ public class EmailPasswordActivity extends BaseActivity {
         return true;
     }
 
-    private String getAvatarBase64(String path) {
-        if (path != null) {
-            Bitmap avatarBitmap = BitmapFactory.decodeFile(path);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            avatarBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            return Base64.encodeToString(stream.toByteArray(), Base64.DEFAULT);
-        } else {
-            return null;
-        }
-    }
 
     private void getPhoto() {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        photoPickerIntent.setAction("image/*");
-        startActivityForResult(photoPickerIntent, 1);
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, REQUEST_CODE_GET_ALL_IMAGES);
     }
 
     @Override
@@ -138,21 +133,14 @@ public class EmailPasswordActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Uri chosenImageUri = null;
         switch (requestCode) {
-            case 1:
+            case REQUEST_CODE_GET_ALL_IMAGES:
                 if (resultCode == RESULT_OK) {
                     chosenImageUri = data.getData();
+                    if (chosenImageUri != null) {
+                        String realLink = ImageUtil.getRealPathFromURI(this, chosenImageUri);
+                        userAvatar = ImageUtil.getAvatarBase64(realLink);
+                    }
                 }
-        }
-        try {
-
-            if (chosenImageUri != null) {
-                final Cursor cursor = getContentResolver().query(chosenImageUri, null, null, null, null);
-                cursor.moveToFirst();
-                pathToAvatar = cursor.getString(0);
-                cursor.close();
-            }
-        } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
         }
     }
 }

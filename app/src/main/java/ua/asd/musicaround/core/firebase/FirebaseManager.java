@@ -101,6 +101,10 @@ public class FirebaseManager {
         });
     }
 
+    public void signIn(String email, String password, OnCompleteListener<AuthResult> callback) {
+        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(callback);
+    }
+
     //Get user info
     public FirebaseUser getCurrentUser() {
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();

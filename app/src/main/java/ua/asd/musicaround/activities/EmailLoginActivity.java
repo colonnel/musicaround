@@ -2,6 +2,7 @@ package ua.asd.musicaround.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 import ua.asd.musicaround.R;
 import ua.asd.musicaround.core.firebase.FirebaseManager;
@@ -62,15 +67,18 @@ public class EmailLoginActivity extends BaseActivity {
     }
 
     private void logInUser(String email, String password) {
-        // TODO: 28.09.2016 SB refact checking is auth success
+        FirebaseManager.getInstance().signIn(email, password, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.getResult().getUser() != null) {
+                    startActivity(new Intent(EmailLoginActivity.this, MapsActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(EmailLoginActivity.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
-        FirebaseManager.getInstance().signIn(email, password);
-        if (FirebaseManager.getInstance().getCurrentUser() != null) {
-            startActivity(new Intent(EmailLoginActivity.this, MapsActivity.class));
-            finish();
-        } else {
-            Toast.makeText(EmailLoginActivity.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
