@@ -11,4 +11,5 @@
     <!--MESSAGES-->
     <string name="message_no_internet">No internet connection.\nPlease, check your internet connection and try again</string>
     <string name="retry">Retry</string>
+    <string name="toolsSoundName">Adele - Hello</string>
 </resources>
