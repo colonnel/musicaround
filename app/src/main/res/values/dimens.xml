@@ -30,4 +30,6 @@
 
     <!--SPLASH_SCREEN-->
     <dimen name="dimLogo">140dp</dimen>
+    <dimen name="textSizeBig">16sp</dimen>
+    <dimen name="dimSoundImage">50dp</dimen>
 </resources>
